@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xlmns:th="http://www.thymeleaf.org"
+      xmlns:xlmns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8">
+        <title>Send Gruppemail</title>
+        <link href="/CSS/kartotek_style.css" rel="stylesheet">
+    </head>
+    <body>
+    <th:block th:include="_navigationBar"></th:block>
+        <header class="header1">
+            <h1>Send Gruppemail</h1>
+            <p>Herfra kan du sende gruppemail til foreningens medlemmer. <br>
+               Vælg en gruppe, hvorefter deres mail adresser bliver eksporteret til outlook.
+            </p>
+        </header>
+        <section id="mail-buttons">
+            <div class="centered">
+                <a class="btn btn-create" th:href= "'mailto:' + ${primary}">Primære</a>
+                <a class="btn btn-ed" th:href= "'mailto:' + ${secondary}">Sekundære</a>
+                <a class="btn btn-mail" th:href= "'mailto:' + ${external}">Eksterne</a>
+                <a class="btn btn-create" th:href= "'mailto:' + ${board}">Bestyrelsen</a>
+                <a class="btn btn-del" th:href= "'mailto:' + ${all}">Alle</a>
+            </div>
+        </section>
+    </body>
+</html>

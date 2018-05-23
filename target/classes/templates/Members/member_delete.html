@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xlmns:th="http://www.thymeleaf.org"
+      xmlns:xlmns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Slet Bruger</title>
+    <link href="/CSS/kartotek_style.css" rel="stylesheet">
+</head>
+    <body>
+    <th:block th:include="_navigationBar"></th:block>
+
+        <div class="container">
+            <h1>ADVARSEL!</h1>
+            <h2>Vil du slette:</h2>
+
+            <form action="#" th:action="@{/delete}"  method="post" >
+                <input type="hidden"  th:field="${member.memberId}"/>
+
+                <div class="container1">
+                    <p><strong>Fulde Navn:</strong></p>
+                    <p th:text="${member.firstName + ' ' + member.lastName}"></p>
+                </div><br>
+
+                <div class="container1">
+                    <p><strong>Medlemstype:</strong></p>
+                    <p th:text="${member.memberType}"></p>
+                </div><br>
+
+                <a th:href="${'/details?memberId='+member.memberId}" class="btn btn-del btn-width" >NEJ</a>
+                <input type="submit" value="JA" class="btn btn-create btn-width"/>
+            </form>
+        </div>
+    </body>
+</html>

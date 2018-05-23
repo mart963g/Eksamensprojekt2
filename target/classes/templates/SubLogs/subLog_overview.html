@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xlmns:th="http://www.thymeleaf.org"
+      xmlns:xlmns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Kontingent Ændringer</title>
+    <link href="/CSS/kartotek_style.css" rel="stylesheet">
+    <!--http://www.kryogenix.org/code/browser/sorttable/ -->
+    <script src="https://kryogenix.org/code/browser/sorttable/sorttable.js"></script>
+</head>
+<body>
+<th:block th:include="_navigationBar"></th:block>
+
+<div class="container">
+    <header class="header1">
+        <h1>Ændringsoversigt</h1>
+        <p>Herfra kan du se en oversigt over alle ændringer foretaget på medlemmernes kontingenter.<br>
+    </header>
+
+    <a type="button" href="/clearLog" class="btn btn-del btn:hover">Ryd Log</a><br><br>
+
+    <table class="sortable contritistics">
+        <thead>
+        <tr>
+            <th>Medlem</th>
+            <th>Ændring</th>
+            <th>Dato</th>
+            <th>Brugernavn</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="subLog: ${subLogs}">
+            <td th:text="${subLog.memberName}"/>
+            <td th:text="${subLog.edit}"/>
+            <td th:text="${subLog.editDate}"/>
+            <td th:text="${subLog.username}"/>
+            </td>
+        </tr>
+        </tbody>
+    </table><br>
+
+    <footer>
+        &copy;2018 Enggården's Venner
+    </footer>
+</div>
+</body>
+</html>

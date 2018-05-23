@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xlmns:th="http://www.thymeleaf.org"
+      xmlns:xlmns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8">
+        <title>Redigér støtte</title>
+        <link href="/CSS/kartotek_style.css" rel="stylesheet">
+    </head>
+    <body>
+    <th:block th:include="_navigationBar"></th:block>
+
+        <div class="container">
+            <form method="post" th:action="@{/contributions/edit}">
+                <input type="hidden" th:field="${contribution.contributionId}"/>
+                <h1>Støtteoplysninger</h1>
+                <p>Aktivitet</p>
+                <select th:field="${contribution.activity}">
+                    <option th:each="act :${activities}" th:value="${act}" th:text="${act}"/>
+                </select>
+                <p>Beløb</p>
+                <input type="number" step="1" th:field="${contribution.amount}" value="${contribution.amount}" />
+                <p>Udbetalingsdato</p>
+                <input type="date" th:field="${contribution.paymentDate}" value="${contribution.paymentDate}" required/>
+                <p></p>
+                <a href="/contributions" type="button" class="btn btn-del btn:hover">Annullér</a> <input type="submit" value="Godkend" class="btn"/>
+            </form>
+        </div>
+    </body>
+</html>

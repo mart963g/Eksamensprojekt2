@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xlmns:th="http://www.thymeleaf.org"
+      xmlns:xlmns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Slet Støtte</title>
+    <link href="/CSS/kartotek_style.css" rel="stylesheet">
+</head>
+    <body>
+    <th:block th:include="_navigationBar"></th:block>
+
+        <div class="container">
+            <h1>ADVARSEL!</h1>
+            <h2>Vil du slette:</h2>
+
+            <form action="#" th:action="@{/contribution/delete}"  method="post" >
+                <input type="hidden" th:field="${cont.contributionId}"/>
+                <div class="container1">
+                    <p><strong>Aktivitet:</strong></p>
+                    <p th:text="${cont.activity}"></p>
+                </div>
+                <div class="container1">
+                    <p><strong>Beløb:</strong></p>
+                    <p th:text="${cont.amount}"></p>
+                </div>
+                <div class="container1">
+                    <p><strong>Dato:</strong></p>
+                    <p th:text="${cont.paymentDate}"></p>
+                </div><br>
+                <a href="/contributions" class="btn btn-del btn-width" >NEJ</a>
+                <input type="submit" value="JA" class="btn btn-create btn-width"/>
+            </form>
+        </div>
+    </body>
+</html>

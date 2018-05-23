@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xlmns:th="http://www.thymeleaf.org"
+      xmlns:xlmns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="/CSS/kartotek_style.css" rel="stylesheet">
+</head>
+    <body>
+    <th:block th:include="_navigationBar"></th:block>
+
+        <div class="container">
+
+            <h1>Rediger Medlem</h1>
+
+            <form method="Post" th:action="@{/edit}">
+                <input type="hidden" th:field="${member.memberId}" />
+                <h2>MEDLEMSOPLYSNINGER</h2>
+                <p>Fornavn:</p>
+                <input type="text" th:field="${member.firstName}" value="${member.firstName}" required/>
+                <p>Efternavn:</p>
+                <input type="text" th:field="${member.lastName}" value="${member.lastName}" required/>
+                <p>E-mail:</p>
+                <input type="text" th:field="${member.mail}" value="${member.mail}"/>
+                <p>Telefon:</p>
+                <input type="number"  th:field="${member.phoneNumber}" value="${member.phoneNumber}"
+                    placeholder="her skal minimum stå 0" required/>
+                <p>Oprettelses Dato:</p>
+                <input type="date" th:field="${member.creationDate}" value="${member.lastName}" required/>
+                <p> Medlemstype:</p>
+                <select th:field="${member.memberType}">
+                    <option th:each="memberType :${memberTypes}" th:value="${memberType}" th:text="${memberType}"/>
+                </select>
+                <p>Er personen bestyrelsesmedlem?</p>
+                <select th:field="${member.isBoard}">
+                    <option th:each="opt :${boardoptions}" th:value="${opt}" th:text="${opt}"/>
+                </select>
+                </section>
+                <section id="address input">
+                    <h2>ADRESSE</h2>
+                    <p>Vejnavn + husnummer:</p>
+                    <input type="text" th:field="${member.address.street}" value="${member.address.street}"/>
+                    <p>Postnummer:</p>
+                    <input type="number" th:field="${member.address.zipCode}" value="${member.address.zipCode}"
+                        placeholder="her skal minimum stå 0" required/>
+                    <p>By:</p>
+                    <input type="text" th:field="${member.address.city}" value="${member.address.city"/>
+                </section>
+                <section id="subscription input">
+                    <h2>MEDLEMSSKAB</h2>
+                    <p>Betalingsdato: <i>(nulstil, ved at klikke på x)</i></p>
+                    <input type="date" th:field="${member.subscription.payDay}" value="${member.subscription.payDay}"/>
+                    <p></p>
+                </section>
+                <input type="hidden" th:field="${subscription.payDay}"/>
+                <a th:href="${'/details?memberId='+member.memberId}" type="button" class="btn btn-del btn:hover">Annullér</a> <input type="submit" value="Godkend" class="btn"/>
+            </form>
+            <br><br><br>
+        </div>
+    </body>
+</html>

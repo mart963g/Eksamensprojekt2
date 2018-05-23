@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xlmns:th="http://www.thymeleaf.org"
+      xmlns:xlmns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Statistik</title>
+    <link href="/CSS/kartotek_style.css" rel="stylesheet">
+    <!--http://www.kryogenix.org/code/browser/sorttable/ -->
+    <script src="https://kryogenix.org/code/browser/sorttable/sorttable.js"></script>
+</head>
+<body>
+<th:block th:include="_navigationBar"></th:block>
+
+<div class="container">
+    <header class="header1">
+        <h1>Statistik</h1>
+        <p>Herfra kan du se statistik over al foreningens registrerede støtte.<br>
+    </header>
+
+    <div class="container1">
+        <p><strong>Total Støtte:</strong></p>
+        <p th:text="${'kr. ' + sum}"></p>
+    </div><br>
+
+    <table class="sortable">
+        <thead>
+        <tr>
+            <th >Aktivitets Type</th>
+            <th>Sum af udbetalt støtte i kr.</th>
+            <th>Antal udbetalinger</th>
+            <th>Gennemsnit pr. aktivitet i kr.</th>
+            <th>Del af samlet støtte i %</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="statistics: ${statistic}">
+            <td th:text="${statistics.activityType}"/>
+            <td th:text="${#numbers.formatDecimal(statistics.sumOfContributions,0,'COMMA',0,'POINT')}"/>
+            <td th:text="${#numbers.formatDecimal(statistics.countOfContributions,0,'COMMA',0,'POINT')}"/>
+            <td th:text="${#numbers.formatDecimal(statistics.avgPerActivity,0,'COMMA',0,'POINT')}"/>
+            <td th:text="${#numbers.formatDecimal(statistics.OfTotal,0,'COMMA',0,'POINT')}"/>
+            </td>
+        </tr>
+        </tbody>
+    </table><br>
+
+    <footer>
+        &copy;2018 Enggården's Venner
+    </footer>
+</div>
+</body>
+</html>
