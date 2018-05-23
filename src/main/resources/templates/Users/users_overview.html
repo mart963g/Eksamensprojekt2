@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xlmns:th="http://www.thymeleaf.org"
+      xmlns:xlmns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Brugerkartotek</title>
+    <link href="/CSS/kartotek_style.css" rel="stylesheet">
+</head>
+<body>
+<th:block th:include="_navigationBar"></th:block>
+
+<div class="container">
+    <header class="header1">
+        <h1>Brugerkartotek</h1>
+        <p>Herfra kan du se en fuld oversigt over systemets brugere.<br>
+           <strong>OBS!</strong> Sørg for der altid er mindst én bruger, med <i>Administrator</i> rettigheder!<br></p>
+    </header>
+
+    <a type="button" href="/users/create" class="btn btn-create btn:hover">Opret bruger</a>
+    <p></p>
+    <table>
+        <thead>
+        <tr>
+            <th>Brugernavn</th>
+            <th>Adgangstype</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="usr: ${users}">
+            <td th:text="${usr.username}" />
+            <td th:text="${usr.userType}"/>
+            <td>
+                <a th:href="${'/users/delete?username=' + usr.username}" type="button" class="btn btn-del btn:hover">Slet bruger</a>
+            </td>
+
+        </tr>
+        </tbody>
+    </table>
+    <footer>
+        &copy;2018 Enggården's Venner
+    </footer>
+</div>
+</body>
+</html>

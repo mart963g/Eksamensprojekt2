@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xlmns:th="http://www.thymeleaf.org"
+      xmlns:xlmns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Opret bruger</title>
+    <link href="/CSS/kartotek_style.css" rel="stylesheet">
+</head>
+<body>
+<th:block th:include="_navigationBar"></th:block>
+
+<div class="container">
+    <header>
+        <h1>Opret bruger</h1>
+    </header>
+    <form method="Post" th:action="@{/users/create}">
+        <section id="contribution input">
+            <h2>Brugeroplysninger</h2>
+            <p>Brugernavn</p>
+            <input type="text" th:field="${usr.username}" placeholder="'Bruger1'" required/>
+            <p>Adgangskode</p>
+            <input type="password" th:field="${usr.userPassword}" placeholder="'qwerty123'" required/>
+            <p> Brugertype</p>
+            <select th:field="${usr.userType}" selected="Standard">
+                <option th:each="type :${userTypes}" th:value="${type}" th:text="${type}"/>
+            </select>
+
+        </section>
+        <br><br>
+        <input type="submit" value="Opret bruger" class="btn btn-create btn:hover"/>
+    </form>
+</div>
+</body>
+</html>

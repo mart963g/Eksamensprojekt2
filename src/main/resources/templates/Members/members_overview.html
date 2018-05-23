@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xlmns:th="http://www.thymeleaf.org"
+      xmlns:xlmns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8">
+        <title>Medlemskartotek</title>
+        <link href="/CSS/kartotek_style.css" rel="stylesheet">
+        <!--http://www.kryogenix.org/code/browser/sorttable/ -->
+        <script src="https://kryogenix.org/code/browser/sorttable/sorttable.js"></script>
+    </head>
+    <body onload="counter()">
+
+    <th:block th:include="_navigationBar"></th:block>
+
+        <div class="container">
+            <header class="header1">
+                <h1>Medlemskartotek</h1>
+                <p>Herfra kan du se en fuld liste over foreningens medlemmer.<br>
+                    Vælg et medlem, for at se deres detaljer, eller redigere i dem.<br></p>
+            </header>
+
+            <a type="button" href="/create" class="btn btn-create btn:hover">Opret Nyt Medlem</a>
+            <a type="button" href="/reset" class="btn btn-del btn:hover" style="float: right">Nulstil Kontingenter</a><br><br>
+            <div class="container1" style="float: right">
+                <p><strong>Antal medlemmer:</strong></p>
+                <p th:text="${count}"></p>
+            </div>
+            <p></p>
+            <table class="sortable" id="table">
+                <thead>
+                    <tr>
+                        <th>Navn</th>
+                        <th>Medlemstype</th>
+                        <th>Kontingent</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="member: ${members}">
+                        <td th:text="${member.firstName + ' ' + member.lastName}"/>
+                        <td th:text="${member.memberType}"/>
+                        <td th:text="${member.subscription.isPaid}"/>
+                        </td>
+                        <td>
+                            <a th:href="${'/details?memberId='+member.memberId}" type="button" class="btn btn-ed btn:hover">Vælg Medlem</a>
+                            <a class="btn btn-mail btn:hover" th:href = "'mailto:' + ${member.mail}">Send email </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table><br>
+
+            <footer>
+                &copy;2018 Enggården's Venner
+            </footer>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+       <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xlmns:th="http://www.thymeleaf.org"
+             xmlns:xlmns="http://www.w3.org/1999/xhtml">
+       <head>
+           <meta charset="UTF-8">
+           <title>Slet Bruger</title>
+           <link href="/CSS/kartotek_style.css" rel="stylesheet">
+       </head>
+           <body>
+           <th:block th:include="_navigationBar"></th:block>
+
+               <div class="container">
+                   <h1>ADVARSEL!</h1>
+                   <h2>Vil du slette:</h2>
+
+                   <form action="#" th:action="@{/users/delete}"  method="post" >
+                       <div class="container1">
+                       <input type="hidden"  th:field="${usr.username}"/>
+                           <p><strong>Brugernavn:</strong></p>
+                           <p th:text="${usr.username}"></p>
+                       </div><br>
+                       <a href="/users" class="btn btn-del btn-width" >NEJ</a>
+                       <input type="submit" value="JA" class="btn btn-create btn-width"/>
+                   </form>
+               </div>
+           </body>
+       </html>

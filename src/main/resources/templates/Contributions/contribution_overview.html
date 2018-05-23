@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xlmns:th="http://www.thymeleaf.org"
+      xmlns:xlmns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8">
+        <title>Oversigt over støtte</title>
+        <link href="/CSS/kartotek_style.css" rel="stylesheet">
+        <!--http://www.kryogenix.org/code/browser/sorttable/ -->
+        <script src="https://kryogenix.org/code/browser/sorttable/sorttable.js"></script>
+    </head>
+    <body>
+    <th:block th:include="_navigationBar"></th:block>
+
+        <div class="container">
+            <header class="header1">
+                <h1>Støtteoversigt</h1>
+                <p>Herfra kan du se den fulde liste over al udbetalt støtte.<br>
+                    Tryk på redigér støtte for at redigere, eller slet støtte for at slette.<br></p>
+            </header>
+
+            <a type="button" href="/contributions/create" class="btn btn-create btn:hover">Opret støtte</a>
+            <p></p>
+            <table class="sortable contritistics">
+                <thead>
+                <tr>
+                    <th>Aktivitet</th>
+                    <th>Beløb i kr.</th>
+                    <th>Betalingsdato</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                        <tr th:each="contribution: ${contributions}">
+                        <td th:text="${contribution.activity}" />
+                        <td th:text="${#numbers.formatDecimal(contribution.amount,0,'COMMA',0,'POINT')}"/>
+                        <td th:text="${contribution.paymentDate}"/>
+                    </td>
+                    <td>
+                        <a th:href="${'/contribution/delete?contributionId='+contribution.contributionId}" type="button" class="btn btn-del btn:hover">Slet</a>
+                    </td>
+                    </tr>
+                </tbody>
+            </table>
+            <footer>
+                &copy;2018 Enggården's Venner
+            </footer>
+        </div>
+    </body>
+</html>

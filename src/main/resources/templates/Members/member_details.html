@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xlmns:th="http://www.thymeleaf.org"
+      xmlns:xlmns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8">
+        <title>Detaljer</title>
+        <link href="/CSS/kartotek_style.css" rel="stylesheet">
+    </head>
+    <body>
+    <th:block th:include="_navigationBar"></th:block>
+
+        <div class="container">
+            <header>
+                <h1><a th:text="Medlemsdetaljer"></a></h1>
+            </header>
+            <input type="hidden" th:field="${member.memberId}" />
+
+            <div class="container1">
+                <p><strong>Fulde Navn:</strong></p>
+                <p th:text="${member.firstName + ' ' + member.lastName}"></p>
+            </div>
+            <br>
+            <div class="container1">
+                <p><strong>Adresse:</strong></p>
+                <p th:text="${member.address.street + ', ' + member.address.zipCode + ' ' + member.address.city}"></p>
+            </div>
+            <br>
+            <div class="container1">
+                <p><strong>Email:</strong></p>
+                <p th:text="${member.mail}"></p>
+            </div>
+            <br>
+            <div class="container1">
+                <p><strong>Telefon:</strong></p>
+                <p th:text="${member.phoneNumber}"></p>
+            </div>
+            <br>
+            <div class="container1">
+                <p><strong>Medlemstype:</strong></p>
+                <p th:text="${member.memberType}"></p>
+            </div>
+            <br>
+            <div class="container1">
+                <p><strong>Kontingent betalt:</strong></p>
+                <p th:text="${member.subscription.payDay}"></p>
+            </div>
+            <br>
+            <div class="container1">
+                <p><strong>Medlem siden:</strong></p>
+                <p th:text="${member.creationDate}"></p>
+            </div>
+            <br>
+            <div class="container1">
+                <p><strong>Bestyrelsesmedlem:</strong></p>
+                <p th:text="${member.isBoard}"></p>
+            </div>
+            <br>
+            <div>
+                <a th:href="${'/members'}" class="btn btn-mail" >Tilbage</a>
+                <a th:href="${'/edit?memberId='+member.memberId}" type="button" class="btn btn-ed">Rediger</a>
+                <a th:href="${'/delete?memberId='+member.memberId}" type="button" class="btn btn-del btn:hover">Slet Medlem</a>
+            </div>
+            <br><br><br>
+        </div>
+    </body>
+</html>
